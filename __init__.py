@@ -3,7 +3,7 @@
 from __future__ import annotations
 from datetime import datetime
 
-from homeassistant.helpers.typing import ConfigType
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import (
     HomeAssistant,
     ServiceCall,
@@ -14,8 +14,8 @@ from homeassistant.core import (
 from .const import DOMAIN, LOGGER
 
 
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Set up the Selective Scene integration."""
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Set up Selective Scene integration."""
 
     async def dummy_service(call: ServiceCall) -> ServiceResponse:
         """A dummy service that returns test data."""
