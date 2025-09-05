@@ -1,0 +1,12 @@
+{
+  "domain": "selective_scene",
+  "name": "Selective Scene",
+  "version": "0.0.1",
+  "codeowners": ["@jpaju"],
+  "documentation": "https://github.com/jpaju/selective-scene",
+  "issue_tracker": "https://github.com/jpaju/selective-scene/issues",
+  "config_flow": false,
+  "integration_type": "hub",
+  "requirements": [],
+  "dependencies": []
+}
