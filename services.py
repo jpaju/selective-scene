@@ -1,0 +1,44 @@
+"""Service implementations for Selective Scene integration."""
+
+from __future__ import annotations
+
+import voluptuous as vol
+
+from homeassistant.helpers.state import async_reproduce_state
+from homeassistant.core import (
+    HomeAssistant,
+    ServiceCall,
+    ServiceResponse,
+)
+
+from .const import LOGGER, DATA_PLATFORM
+
+
+async def activate_scene(call: ServiceCall) -> ServiceResponse:
+    """Activate a scene."""
+    hass: HomeAssistant = call.hass
+    platform: EntityPlatform = hass.data[DATA_PLATFORM]
+
+    entity_ids = call.data.get("entity_id")
+    entity_filter = call.data.get("entity_filter", [])
+
+    entity_id = entity_ids[0]
+    LOGGER.warn("entity_ids: %s", entity_ids)
+    if not entity_ids:
+        return {"error": "No entity_id provided"}
+
+    scene_data = platform.entities.get(entity_id)
+    scene_states = scene_data.scene_config.states.values()
+    LOGGER.warn("scene_data: %s", scene_data)
+    LOGGER.warn("scene_states: %s", scene_states)
+
+    scene_states_filtered = [
+        state for state in scene_states if state.entity_id in entity_filter
+    ]
+    LOGGER.warn("scene_states_filtered: %s", scene_states_filtered)
+
+    await async_reproduce_state(
+        hass,
+        scene_states_filtered,
+        context=call.context,
+    )

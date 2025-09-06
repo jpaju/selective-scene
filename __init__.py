@@ -1,35 +1,29 @@
 """The Selective Scene integration."""
 
 from __future__ import annotations
-from datetime import datetime
+import voluptuous as vol
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import (
-    HomeAssistant,
-    ServiceCall,
-    ServiceResponse,
-    SupportsResponse,
-)
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers import config_validation as cv
 
-from .const import DOMAIN, LOGGER
+from .const import DOMAIN
+from .services import activate_scene
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, _: ConfigEntry) -> bool:
     """Set up Selective Scene integration."""
-
-    async def dummy_service(call: ServiceCall) -> ServiceResponse:
-        """A dummy service that returns test data."""
-        LOGGER.info("Dummy service called with data: %s", call.data)
-
-        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        message = f"Dummy service called at {current_time}"
-        return {"message": message, "timestamp": current_time}
 
     hass.services.async_register(
         DOMAIN,
-        "dummy_service",
-        dummy_service,
-        supports_response=SupportsResponse.ONLY,
+        "turn_on",
+        activate_scene,
+        schema=vol.Schema(
+            {
+                vol.Required("entity_id"): cv.entity_ids,
+                vol.Optional("entity_filter"): cv.entity_ids,
+            }
+        ),
     )
 
     return True

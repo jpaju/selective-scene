@@ -1,3 +1,14 @@
-dummy_service:
-  name: Dummy Service
-  description: A test service for the Selective Scene integration
+activate:
+  name: Activate
+  description: Activates a scene with given filters.
+  target:
+    entity:
+      domain: scene
+  fields:
+    entity_filter:
+      selector:
+        entity:
+          multiple: true
+      example: |
+        - light.tv_back_light
+        - light.theatre
