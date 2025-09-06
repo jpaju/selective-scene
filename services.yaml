@@ -1,3 +1,19 @@
 dummy_service:
   name: Dummy Service
   description: A test service for the Selective Scene integration
+get_scenes:
+  name: Get Scenes
+  description: A service to retrieve scenes from the Selective Scene integration
+activate:
+  name: Activate
+  target:
+    entity:
+      domain: scene
+  fields:
+    entity_filter:
+      selector:
+        entity:
+          multiple: true
+      example: |
+        - light.tv_back_light
+        - light.theatre
