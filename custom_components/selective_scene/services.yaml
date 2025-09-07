@@ -1,11 +1,13 @@
-activate:
-  name: Activate
-  description: Activates a scene with given filters.
+turn_on:
+  name: "Activate"
+  description: "Activates a scene with given filters."
   target:
     entity:
       domain: scene
   fields:
     entity_filter:
+      name: "Entity Filter"
+      description: "List of entity IDs to include. Only these entities will be affected by the scene activation."
       selector:
         entity:
           multiple: true
@@ -13,6 +15,8 @@ activate:
         - light.tv_back_light
         - light.theatre
     area_filter:
+      name: "Area Filter"
+      description: "Name of the area to include. Only entities in this area will be affected by the scene activation."
       selector:
         area:
           multiple: true
@@ -20,6 +24,8 @@ activate:
         - living_room
         - kitchen
     transition:
+      name: "Transition"
+      description: "Time it takes the devices to transition into the states defined in the scene."
       selector:
         number:
           min: 0
