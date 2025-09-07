@@ -1,13 +1,14 @@
 {
   "domain": "selective_scene",
   "name": "Selective Scene",
-  "version": "0.0.1",
   "codeowners": ["@jpaju"],
-  "documentation": "https://github.com/jpaju/selective-scene",
-  "issue_tracker": "https://github.com/jpaju/selective-scene/issues",
   "config_flow": true,
-  "single_config_entry": true,
+  "dependencies": [],
+  "documentation": "https://github.com/jpaju/selective-scene",
   "integration_type": "hub",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/jpaju/selective-scene/issues",
   "requirements": [],
-  "dependencies": []
+  "single_config_entry": true,
+  "version": "0.0.1"
 }
