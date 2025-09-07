@@ -12,6 +12,13 @@ activate:
       example: |
         - light.tv_back_light
         - light.theatre
+    area_filter:
+      selector:
+        area:
+          multiple: true
+      example: |
+        - living_room
+        - kitchen
     transition:
       selector:
         number:

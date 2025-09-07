@@ -10,10 +10,11 @@ This integration implements the functionality proposed in https://github.com/hom
 - [x] Support transitions
 - [x] Support empty `entity_filter`
 - [x] Support multiple scenes/targets
-- [ ] Support `areas` in addition to `entity_filter`
+- [x] Support `area_filter` in addition to `entity_filter`
 - [ ] Support `labels` in addition to `entity_filter`
+- [ ] Resolve individual entities from entity groups when using filters. For example if scene state contains light group, "flatten" the group recursively to individual light entities
 - [ ] Add tests
-- [ ] Refactor to extend the existing `HomeAssistantScene` class?
 - [ ] Add docs
 - [ ] Create logo and add to `home-assistant/brands` repo
 - [ ] Configure GitHub releases, see [docs](https://www.hacs.xyz/docs/publish/integration/#github-releases-optional)
+- [ ] Refactor to extend the existing `HomeAssistantScene` class?
