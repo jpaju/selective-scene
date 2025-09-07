@@ -6,7 +6,13 @@ This integration implements the functionality proposed in https://github.com/hom
 
 ## TODO
 
-- [ ] Add `flake.nix` to run locally
 - [x] Add description
+- [x] Support transitions
+- [ ] Support empty `entity_filter`
+- [ ] Support multiple targets
+- [ ] Support `areas` in addition to `entity_filter`
+- [ ] Support `labels` in addition to `entity_filter`
+- [ ] Refactor to extend the existing `HomeAssistantScene` class?
 - [ ] Add docs
+- [ ] Create logo and add to `home-assistant/brands` repo
 - [ ] Configure GitHub releases, see [docs](https://www.hacs.xyz/docs/publish/integration/#github-releases-optional)

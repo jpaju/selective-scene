@@ -12,3 +12,9 @@ activate:
       example: |
         - light.tv_back_light
         - light.theatre
+    transition:
+      selector:
+        number:
+          min: 0
+          max: 300
+          unit_of_measurement: seconds

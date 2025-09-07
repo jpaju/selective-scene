@@ -22,6 +22,9 @@ async def async_setup_entry(hass: HomeAssistant, _: ConfigEntry) -> bool:
             {
                 vol.Required("entity_id"): cv.entity_ids,
                 vol.Optional("entity_filter"): cv.entity_ids,
+                vol.Optional("transition"): vol.All(
+                    vol.Coerce(float), vol.Clamp(min=0, max=6553)
+                ),
             }
         ),
     )
