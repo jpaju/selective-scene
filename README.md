@@ -9,9 +9,10 @@ This integration implements the functionality proposed in https://github.com/hom
 - [x] Add description
 - [x] Support transitions
 - [x] Support empty `entity_filter`
-- [ ] Support multiple targets
+- [x] Support multiple scenes/targets
 - [ ] Support `areas` in addition to `entity_filter`
 - [ ] Support `labels` in addition to `entity_filter`
+- [ ] Add tests
 - [ ] Refactor to extend the existing `HomeAssistantScene` class?
 - [ ] Add docs
 - [ ] Create logo and add to `home-assistant/brands` repo
