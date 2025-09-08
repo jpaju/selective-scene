@@ -1,5 +1,10 @@
 # Selective Scene
 
+[![Static Badge](https://img.shields.io/badge/HACS-Custom-41BDF5?style=for-the-badge&logo=homeassistantcommunitystore&logoColor=white)](https://github.com/hacs/integration)
+[![GitHub Release](https://img.shields.io/github/v/release/jpaju/selective-scene?style=for-the-badge)](https://github.com/jpaju/selective-scene/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/jpaju/selective-scene?style=for-the-badge&label=Latest%20Release)](https://github.com/jpaju/selective-scene/releases/latest)
+[![GitHub Issues](https://img.shields.io/github/issues/jpaju/selective-scene?style=for-the-badge)](https://github.com/jpaju/selective-scene/issues)
+
 A Home Assistant custom integration that enables selective scene activation: apply scenes to only specific entities or areas instead of all entities in the scene.
 
 ## Motivation
