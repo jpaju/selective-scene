@@ -13,5 +13,4 @@
 - [x] Support multiple scenes/targets
 - [x] Support `area_filter` in addition to `entity_filter`
 - [ ] Support `labels` in addition to `entity_filter`
-- [ ] Resolve individual entities from entity groups when using filters. For example if scene state contains light group, "flatten" the group recursively to individual light entities
 - [ ] Refactor to extend the existing `HomeAssistantScene` class?
