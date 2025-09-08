@@ -5,6 +5,7 @@
 - [x] Add description
 - [x] Add docs
 - [x] Add CI
+- [x] Add license
 - [ ] Add tests
 - [ ] Create logo and add to `home-assistant/brands` repo
 - [ ] Configure GitHub releases, see [docs](https://www.hacs.xyz/docs/publish/integration/#github-releases-optional)
