@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "selective-scene"
+description = "Home Assistant custom integration for selective scene activation"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-homeassistant-custom-component>=0.13",
+]
+
+[tool.setuptools.packages.find]
+include = ["custom_components*"]
+
+[tool.hatch.version]
+path = "custom_components/selective_scene/manifest.json"
+pattern = '"version": "(?P<version>[^"]+)"'
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.2",
+    "pytest-homeassistant-custom-component>=0.13.109",
+]
+
+[tool.setuptools.package-data]
+"custom_components.selective_scene" = ["*.json", "*.yaml"]
