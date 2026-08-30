@@ -1,11 +1,25 @@
-name: CI
+name: Verification
 
 on:
   push:
-  schedule:
-    - cron: "0 4 * * 5"
 
 jobs:
+  unit-test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Nix
+        uses: jpaju/gh-commons/actions/setup-nix@main
+
+      - name: Install dependencies
+        run: nix develop --command uv sync --locked
+
+      - name: Run unit tests
+        run: nix develop --command uv run --locked pytest
+
   hacs:
     name: HACS Validation
     runs-on: ubuntu-latest
