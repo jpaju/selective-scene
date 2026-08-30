@@ -33,6 +33,20 @@ async def test_turn_on_updates_scene_activation_timestamp(hass: HomeAssistant) -
     assert scene_state.state == now.isoformat()
 
 
+async def test_turn_on_sets_scene_context(hass: HomeAssistant) -> None:
+    """Test turning on a scene propagates the service call context."""
+    # Given a service call with a context
+    context = Context()
+
+    # When the scene is activated with selective_scene
+    await _call_selective_scene_turn_on(hass, context=context)
+
+    # Then the scene state retains the service call context
+    scene_state = hass.states.get("scene.test")
+    assert scene_state is not None
+    assert scene_state.context.id == context.id
+
+
 async def _call_selective_scene_turn_on(
     hass: HomeAssistant,
     *,

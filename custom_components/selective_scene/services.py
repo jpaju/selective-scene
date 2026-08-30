@@ -79,6 +79,7 @@ def _record_scene_activations(
     scenes: list[HomeAssistantScene], context: Context
 ) -> None:
     for scene in scenes:
+        scene.async_set_context(context)
         scene._async_record_activation()
         scene.async_write_ha_state()
 
