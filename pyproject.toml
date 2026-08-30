@@ -10,18 +10,15 @@ requires-python = ">=3.11"
 dependencies = []
 dynamic = ["version"]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
-    "pytest-homeassistant-custom-component>=0.13",
-]
-
 [tool.setuptools.packages.find]
 include = ["custom_components*"]
 
 [tool.hatch.version]
 path = "custom_components/selective_scene/manifest.json"
 pattern = '"version": "(?P<version>[^"]+)"'
+
+[tool.uv]
+package = false
 
 [dependency-groups]
 dev = [
@@ -31,3 +28,7 @@ dev = [
 
 [tool.setuptools.package-data]
 "custom_components.selective_scene" = ["*.json", "*.yaml"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
