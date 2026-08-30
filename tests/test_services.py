@@ -15,6 +15,24 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from custom_components.selective_scene.const import DOMAIN
 
 
+async def test_turn_on_updates_scene_activation_timestamp(hass: HomeAssistant) -> None:
+    """Test turning on a scene records its activation timestamp."""
+    # Given a scene that has never been activated
+    scene_state = hass.states.get("scene.test")
+    assert scene_state is not None
+    assert scene_state.state == STATE_UNKNOWN
+
+    now = dt_util.utcnow()
+
+    # When the scene is activated with selective_scene
+    await _call_selective_scene_turn_on(hass, activation_time=now)
+
+    # Then the scene state contains the activation timestamp
+    scene_state = hass.states.get("scene.test")
+    assert scene_state is not None
+    assert scene_state.state == now.isoformat()
+
+
 async def _call_selective_scene_turn_on(
     hass: HomeAssistant,
     *,

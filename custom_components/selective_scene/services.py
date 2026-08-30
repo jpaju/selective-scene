@@ -16,6 +16,7 @@ from homeassistant.helpers.device_registry import (
 from homeassistant.helpers.entity_platform import EntityPlatform
 from homeassistant.helpers.state import async_reproduce_state
 from homeassistant.core import (
+    Context,
     HomeAssistant,
     ServiceCall,
     ServiceResponse,
@@ -38,12 +39,14 @@ async def activate_scene(call: ServiceCall) -> ServiceResponse:
     if not scene_ids:
         return {"error": "No target/entity_id provided"}
 
-    scene_states = _get_scene_states(platform, scene_ids)
+    scenes = _get_scenes(platform, scene_ids)
+    scene_states = _get_scene_states(scenes)
     scene_states = _apply_area_filter(hass, scene_states, area_filter)
     scene_states = _apply_entity_filter(scene_states, entity_filter)
 
-    reproduce_options = {"transition": transition} if transition is not None else {}
+    _record_scene_activations(scenes, call.context)
 
+    reproduce_options = {"transition": transition} if transition is not None else {}
     await async_reproduce_state(
         hass,
         scene_states,
@@ -52,22 +55,32 @@ async def activate_scene(call: ServiceCall) -> ServiceResponse:
     )
 
 
-def _get_scene_states(
+def _get_scenes(
     platform: EntityPlatform,
     scene_ids: list[str],
-) -> list[State]:
-    """Collect all states from the given scenes ids."""
-    all_states: list[State] = []
+) -> list[HomeAssistantScene]:
+    scenes: list[HomeAssistantScene] = []
 
     for scene_id in scene_ids:
         scene = cast(HomeAssistantScene | None, platform.entities.get(scene_id))
         if not scene:
             continue
 
-        scene_states = scene.scene_config.states.values()
-        all_states.extend(scene_states)
+        scenes.append(scene)
 
-    return all_states
+    return scenes
+
+
+def _get_scene_states(scenes: list[HomeAssistantScene]) -> list[State]:
+    return [state for scene in scenes for state in scene.scene_config.states.values()]
+
+
+def _record_scene_activations(
+    scenes: list[HomeAssistantScene], context: Context
+) -> None:
+    for scene in scenes:
+        scene._async_record_activation()
+        scene.async_write_ha_state()
 
 
 def _apply_area_filter(
